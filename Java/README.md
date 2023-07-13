@@ -1,1 +1,1 @@
-
+Oops Concepts, Data Types, Operators and Language, Constructs, Inner Classes and Inheritance, Interface and Package, Exceptions, Collections, Threads, Java.lang, Java.util, Java Virtual Machine, Reflection in JVM, JVM’s architecture, Lambda Expressions, Functional Programming and Interfaces, Introduction to Streams, Introduction of JDBC API 
