@@ -1,1 +1,1 @@
-
+Supervised and Unsupervised Learning , Uses of Machine learning , Clustering, K means, Hierarchical Clustering, Decision Trees, Classification problems, Bayesian analysis and Naïve Bayes classifier, Random forest, Gradient boosting Machines, Association rules learning, PCA, Apriori, Support vector Machines, Linear and Non liner classification, ARIMA, XG Boost, CAT Boost, Neural Networks and its application, Tensorflow 2.x framework, Deep learning algorithms. 
