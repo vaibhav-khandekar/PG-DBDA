@@ -1,0 +1,441 @@
+> grades = c('A','B','A','C','C','B','A','A','B','D','B','A','A','A','B','C','B','A','A','B')
+> length(grades)
+[1] 20
+> unique(grades)
+[1] "A" "B" "C" "D"
+> grd_count = tab;
+Error: object 'tab' not found
+> grd_count = table(grades)
+> grd_count
+grades
+A B C D 
+9 7 3 1 
+> grd_prop = grd_count / length(grades)
+> grd_prop
+grades
+   A    B    C    D 
+0.45 0.35 0.15 0.05 
+> grd_pct = grd_prop*100
+> grd_pct
+grades
+ A  B  C  D 
+45 35 15  5 
+> cumsum(grd_pct)
+  A   B   C   D 
+ 45  80  95 100 
+> cumsum(grd_count)
+ A  B  C  D 
+ 9 16 19 20 
+> barplot(grd_count)
+> pie(grd_count)
+> head(faithful)
+  eruptions waiting
+1     3.600      79
+2     1.800      54
+3     3.333      74
+4     2.283      62
+5     4.533      85
+6     2.883      55
+> erupt = faithful$eruptions
+> min(erupt)
+[1] 1.6
+> max(erupt)
+[1] 5.1
+> b = c(1.5,2.2,3.5,4.7,5.2)
+> head(erupt)
+[1] 3.600 1.800 3.333 2.283 4.533 2.883
+> erupt_cat = cut(erupt,b)
+> head(erupt_cat)
+[1] (3.5,4.7] (1.5,2.2] (2.2,3.5] (2.2,3.5] (3.5,4.7] (2.2,3.5]
+Levels: (1.5,2.2] (2.2,3.5] (3.5,4.7] (4.7,5.2]
+> erupt_cat_new = cut(erupt,b,right = F)
+> head(erupt_cat_new)
+[1] [3.5,4.7) [1.5,2.2) [2.2,3.5) [2.2,3.5) [3.5,4.7) [2.2,3.5)
+Levels: [1.5,2.2) [2.2,3.5) [3.5,4.7) [4.7,5.2)
+> erupt_cat_name = cut(erupt,b,labels = c('A','B','C','D'))
+> head(erupt_cat_name)
+[1] C A B B C B
+Levels: A B C D
+> head(erupt)
+[1] 3.600 1.800 3.333 2.283 4.533 2.883
+> table(erupt_cat_name)
+erupt_cat_name
+  A   B   C   D 
+ 74  32 140  26 
+> barplot(erupt_cat_name)
+Error in barplot.default(erupt_cat_name) : 
+  'height' must be a vector or a matrix
+> barplot(erupt_cat_name)
+Error in barplot.default(erupt_cat_name) : 
+  'height' must be a vector or a matrix
+> barplot(table(erupt_cat_name))
+> barplot(sort(table(erupt_cat_name),decreasing = T))
+> hist(erupt,b)
+> erupt_cat_name / length(erupt)
+  [1] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
+ [27] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
+ [53] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
+ [79] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
+[105] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
+[131] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
+[157] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
+[183] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
+[209] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
+[235] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
+[261] NA NA NA NA NA NA NA NA NA NA NA NA
+Warning message:
+In Ops.factor(erupt_cat_name, length(erupt)) :
+  ‘/’ not meaningful for factors
+> table(erupt_cat_name) / length(erupt)
+erupt_cat_name
+         A          B          C          D 
+0.27205882 0.11764706 0.51470588 0.09558824 
+> round(table(erupt_cat_name) / length(erupt),3)
+erupt_cat_name
+    A     B     C     D 
+0.272 0.118 0.515 0.096 
+> mean(erupt)
+[1] 3.487783
+> median(erupt)
+[1] 4
+> erupt_count = table(erupt)
+> head(erupt_count)
+erupt
+  1.6 1.667   1.7 1.733  1.75 1.783 
+    1     1     1     1     6     2 
+> which(head(erupt_count))
+Error in which(head(erupt_count)) : argument to 'which' is not logical
+> which(erupt_count == max(erupt_count))
+1.867   4.5 
+   11    99 
+> erupt_count[c(11,99)]
+erupt
+1.867   4.5 
+    8     8 
+> 
+> mode(erupt)
+[1] "numeric"
+> quantile(errupt,0.75) - quantile(erupt,0.25)
+Error: object 'errupt' not found
+> quantile(erupt,0.75) - quantile(erupt,0.25)
+   75% 
+2.2915 
+> var(erupt)
+[1] 1.302728
+> sd(erupt)
+[1] 1.141371
+> installed.packages('moments')
+     Package LibPath Version Priority Depends Imports LinkingTo Suggests Enhances
+     License License_is_FOSS License_restricts_use OS_type Archs MD5sum
+     NeedsCompilation Built
+> install.packages('moments')
+WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+Installing package into ‘C:/Users/vaibh/AppData/Local/R/win-library/4.3’
+(as ‘lib’ is unspecified)
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/moments_0.14.1.zip'
+Content type 'application/zip' length 56091 bytes (54 KB)
+downloaded 54 KB
+
+package ‘moments’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+	C:\Users\vaibh\AppData\Local\Temp\Rtmp6xKcAI\downloaded_packages
+> library(moments)
+> skewness(erupt)
+[1] -0.415841
+> kurtosis(erupt)
+[1] 1.4994
+> hist(erupt)
+> #chances of rain in June - 0.7
+> I stay in Mumbai for 10 days
+Error: unexpected symbol in "I stay"
+> #I stay in Mumbai for 10 days
+> #chances of (1) it rains for exactly 7 out of 10 days
+> #(2) rains for upto 7 days
+> #(3) rains for min 7 days
+> dbinom(7,10,0.7)
+[1] 0.2668279
+> dbinom(7,10,0.7) #exact 7
+[1] 0.2668279
+> pbinom(7,10,0.7) #max 7
+[1] 0.6172172
+> 1 - pbinom(6,10,0.7) #min 7
+[1] 0.6496107
+> pbinom(6,10,0.7,lower.tail = F) #min 7
+[1] 0.6496107
+> bbinom(3,5,0.4,) #exact 3
+Error in bbinom(3, 5, 0.4, ) : could not find function "bbinom"
+> bbinom(3,5,0.4) #exact 3
+Error in bbinom(3, 5, 0.4) : could not find function "bbinom"
+> dbinom(3,5,0.4) #exact 3
+[1] 0.2304
+> dbinom(3,5,0.4) + dbinom(4,5,0.4) + dbinom(5,5,0.4)
+[1] 0.31744
+> #avg occurances for accide is 25 per day
+> #prob of exactly 17 accidents, upto 17 and min 17
+> dpois(17,25)
+[1] 0.02272739
+> dpois(17,25) #exact 17
+[1] 0.02272739
+> ppois(17,25) #upto 17
+[1] 0.06047504
+> 1 - ppois(17,25) #min 17
+[1] 0.939525
+> dpois(0,1)
+[1] 0.3678794
+> #in the box of 100 LEDs, we will allow 10 to be defective
+> #take a sample of 10 LEDs, what probability upto 1 will be defective LED
+> phyper(1,100,10,10)
+[1] 2.134436e-11
+> #200 break downs are reported in a year
+> (24*365) / 200
+[1] 43.8
+> #average time between two break downs
+> #client is in the my office for 60 hours. what is the probability that he sees the breakdown 
+> pexp(60,1/43.8)
+[1] 0.7458582
+> pexp(80,1/43.8)
+[1] 0.8390214
+> #time to go from station A to station B is 45 min with std dev = 3 min
+> #what is the probability that we reach there in less than 40 min
+> pnorm(40,45,3)
+[1] 0.04779035
+> z = (40-45) / 3
+> pnorm(z)
+[1] 0.04779035
+> #what is the probability of taking more than 47 min
+> 1 - pnorm(46,45,3)
+[1] 0.3694413
+> pnorm(47,45,3,lower.tail = F)
+[1] 0.2524925
+> 1 - pnorm(47,45,3)
+[1] 0.2524925
+> qnorm(0.6)
+[1] 0.2533471
+> qnorm(0.6)*5+70
+[1] 71.26674
+> qnorm(0.6,70,5)
+[1] 71.26674
+> #time to go from station A to station B is 45 min with std dev = 3 min based on sample size of 21 trips
+> pt(z,20)
+[1] 0.05558281
+> pt(z,1999)
+[1] 0.04786868
+> pt(z,2000)
+[1] 0.04786864
+> pt(z,1900)
+[1] 0.04787276
+> qt(0.6,20)
+[1] 0.2567428
+> #1. completing a course takes 60 hours with pop sd = 2 hours. what is the probability that your corse gets over between 57 and 61 hours.
+> 
+> #2. what is time above which 30% of the courses will get over.
+> #3. do the same question above considering the sample standard deviation based on a sample of 15 values.
+> pnorm(61,60,2) - pnorm(57,60,2)
+[1] 0.6246553
+> qnorm(0.7,60,2)
+[1] 61.0488
+> z1 = (57 - 60) / 2
+> z2 = (61 - 60) / 2
+> pt(z2,14) - pt(z1,14)
+[1] 0.6096664
+> qt(0.7,14)
+[1] 0.5365522
+> qt(0.7,14)*2 + 60
+[1] 61.0731
+> erupt = faithful$eruptions
+> s1 = erupt[35:80]
+> #mean of s1 is atleast 3.8
+> #Ho : mean(s1) >= 3.8
+> #Ha : mean(s1) < 3.8 --> left tail test
+> t.test(s1,mu=3.8,alternative = 'less')
+
+	One Sample t-test
+
+data:  s1
+t = -1.7325, df = 45, p-value = 0.04502
+alternative hypothesis: true mean is less than 3.8
+95 percent confidence interval:
+     -Inf 3.790116
+sample estimates:
+mean of x 
+ 3.477152 
+
+> t.test(s1,mu=3.6,alternative = 'less')
+
+	One Sample t-test
+
+data:  s1
+t = -0.65923, df = 45, p-value = 0.2566
+alternative hypothesis: true mean is less than 3.6
+95 percent confidence interval:
+     -Inf 3.790116
+sample estimates:
+mean of x 
+ 3.477152 
+
+> #mean of s1 is at the most 3.3
+> #Ho : mean(s1) <= 3.3
+> #Ha : mean(s1) > 3.3 --> right tail test
+> t.test(s1,mu=3.3,alternative = 'greater')
+
+	One Sample t-test
+
+data:  s1
+t = 0.95064, df = 45, p-value = 0.1734
+alternative hypothesis: true mean is greater than 3.3
+95 percent confidence interval:
+ 3.164189      Inf
+sample estimates:
+mean of x 
+ 3.477152 
+
+> #p-value is greater than 0.05
+> #so null hypothesis will not rejected
+> #the difference between actual mean and claim value, it is just a matter of chance variation
+> Ho : mean(s1) = 2.8
+Error: object 'Ho' not found
+> Ho : mean(s1) = 2.8
+Error: object 'Ho' not found
+> #Ho : mean(s1) = 2.8
+> #Ha : mean(s1) != 2.8 --> two-sided test
+> t.test(s1,mu=2.8,alternative = 'two.sided')
+
+	One Sample t-test
+
+data:  s1
+t = 3.6337, df = 45, p-value = 0.0007138
+alternative hypothesis: true mean is not equal to 2.8
+95 percent confidence interval:
+ 3.101821 3.852483
+sample estimates:
+mean of x 
+ 3.477152 
+
+> length(s2)
+Error: object 's2' not found
+> s2 = erupt[130:160]
+> length(s1)
+[1] 46
+> length(s2)
+[1] 31
+> mean(s1)
+[1] 3.477152
+> mean(s2)
+[1] 3.556355
+> #Ho : mean(s2) - mean(s1) >= 0.25
+> #Ha : mean(s2) - mean(s1) < 0.25 --> left tail test
+> t.test(s2,s1,mu=0.25,alternative = 'less')
+
+	Welch Two Sample t-test
+
+data:  s2 and s1
+t = -0.60207, df = 67.067, p-value = 0.2746
+alternative hypothesis: true difference in means is less than 0.25
+95 percent confidence interval:
+      -Inf 0.5523578
+sample estimates:
+mean of x mean of y 
+ 3.556355  3.477152 
+
+> #Ho is not rejected, because p-value is greater than 0.05
+> #so no action will be taken
+> #the difference between both mean values and claim value, it is just a matter of chance variation.
+> before = c(7,9,8,6,7,8)
+> after = c(6,8,9,5,6,8)
+> #since people started working from home, their time of delivery has increased by an average of 0.2 min
+> #Ho : avg(after-before) >= 0.2
+> #Ha : avg(after-before) < 0.2 --> left tail test
+> t.test(after,before,mu=0.2,alternative = 'less',paired = T)
+
+	Paired t-test
+
+data:  after and before
+t = -2.0494, df = 5, p-value = 0.04786
+alternative hypothesis: true mean difference is less than 0.2
+95 percent confidence interval:
+    -Inf 0.18827
+sample estimates:
+mean difference 
+           -0.5 
+
+> head(InsectSprays)
+  count spray
+1    10     A
+2     7     A
+3    20     A
+4    14     A
+5    14     A
+6    12     A
+> str(InsectSprays)
+'data.frame':	72 obs. of  2 variables:
+ $ count: num  10 7 20 14 14 12 10 23 17 20 ...
+ $ spray: Factor w/ 6 levels "A","B","C","D",..: 1 1 1 1 1 1 1 1 1 1 ...
+> unique(InsectSprays$spray)
+[1] A B C D E F
+Levels: A B C D E F
+> InsectSprays$spray = as.factor(InsectSprays$spray) #--> dummies(python)
+> #Ho : counts are the same for all the pairs of sprays
+> mod = aov(count ~ spray, data = InsectSprays)
+> summary(mod)
+            Df Sum Sq Mean Sq F value Pr(>F)    
+spray        5   2669   533.8    34.7 <2e-16 ***
+Residuals   66   1015    15.4                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+> TukeyHSD(mod)
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = count ~ spray, data = InsectSprays)
+
+$spray
+           diff        lwr       upr     p adj
+B-A   0.8333333  -3.866075  5.532742 0.9951810
+C-A -12.4166667 -17.116075 -7.717258 0.0000000
+D-A  -9.5833333 -14.282742 -4.883925 0.0000014
+E-A -11.0000000 -15.699409 -6.300591 0.0000000
+F-A   2.1666667  -2.532742  6.866075 0.7542147
+C-B -13.2500000 -17.949409 -8.550591 0.0000000
+D-B -10.4166667 -15.116075 -5.717258 0.0000002
+E-B -11.8333333 -16.532742 -7.133925 0.0000000
+F-B   1.3333333  -3.366075  6.032742 0.9603075
+D-C   2.8333333  -1.866075  7.532742 0.4920707
+E-C   1.4166667  -3.282742  6.116075 0.9488669
+F-C  14.5833333   9.883925 19.282742 0.0000000
+E-D  -1.4166667  -6.116075  3.282742 0.9488669
+F-D  11.7500000   7.050591 16.449409 0.0000000
+F-E  13.1666667   8.467258 17.866075 0.0000000
+
+> head(ToothGrowth)
+   len supp dose
+1  4.2   VC  0.5
+2 11.5   VC  0.5
+3  7.3   VC  0.5
+4  5.8   VC  0.5
+5  6.4   VC  0.5
+6 10.0   VC  0.5
+> str(ToothGrowth)
+'data.frame':	60 obs. of  3 variables:
+ $ len : num  4.2 11.5 7.3 5.8 6.4 10 11.2 11.2 5.2 7 ...
+ $ supp: Factor w/ 2 levels "OJ","VC": 2 2 2 2 2 2 2 2 2 2 ...
+ $ dose: num  0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 ...
+> unique(ToothGrowth$dose)
+[1] 0.5 1.0 2.0
+> ToothGrowth$dose = as.factor(ToothGrowth$dose)
+> str(ToothGrowth)
+'data.frame':	60 obs. of  3 variables:
+ $ len : num  4.2 11.5 7.3 5.8 6.4 10 11.2 11.2 5.2 7 ...
+ $ supp: Factor w/ 2 levels "OJ","VC": 2 2 2 2 2 2 2 2 2 2 ...
+ $ dose: Factor w/ 3 levels "0.5","1","2": 1 1 1 1 1 1 1 1 1 1 ...
+> mod = aov(len ~ supp * dose, data = ToothGrowth)
+> summary(mod)
+            Df Sum Sq Mean Sq F value   Pr(>F)    
+supp         1  205.4   205.4  15.572 0.000231 ***
+dose         2 2426.4  1213.2  92.000  < 2e-16 ***
+supp:dose    2  108.3    54.2   4.107 0.021860 *  
+Residuals   54  712.1    13.2                     
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1

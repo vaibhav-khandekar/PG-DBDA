@@ -1,0 +1,1000 @@
+> length(which(is.na(airquality$Ozone & airquality$Solar.R)))
+[1] 42
+> which(is.na(airquality$Ozone) & (airquality$Solar.R))
+ [1]  10  25  26  32  33  34  35  36  37  39  42  43  45  46
+[15]  52  53  54  55  56  57  58  59  60  61  65  72  75  83
+[29]  84 102 103 107 115 119 150
+> which(is.na(airquality$Ozone) & is.na(airquality$Solar.R))
+[1]  5 27
+> ind = which(is.na(airquality$Ozone) & is.na(airquality$Solar.R))
+> mydf = airquality[-ind,]
+> mydf
+    Ozone Solar.R Wind Temp Month Day
+1      41     190  7.4   67     5   1
+2      36     118  8.0   72     5   2
+3      12     149 12.6   74     5   3
+4      18     313 11.5   62     5   4
+6      28      NA 14.9   66     5   6
+7      23     299  8.6   65     5   7
+8      19      99 13.8   59     5   8
+9       8      19 20.1   61     5   9
+10     NA     194  8.6   69     5  10
+11      7      NA  6.9   74     5  11
+12     16     256  9.7   69     5  12
+13     11     290  9.2   66     5  13
+14     14     274 10.9   68     5  14
+15     18      65 13.2   58     5  15
+16     14     334 11.5   64     5  16
+17     34     307 12.0   66     5  17
+18      6      78 18.4   57     5  18
+19     30     322 11.5   68     5  19
+20     11      44  9.7   62     5  20
+21      1       8  9.7   59     5  21
+22     11     320 16.6   73     5  22
+23      4      25  9.7   61     5  23
+24     32      92 12.0   61     5  24
+25     NA      66 16.6   57     5  25
+26     NA     266 14.9   58     5  26
+28     23      13 12.0   67     5  28
+29     45     252 14.9   81     5  29
+30    115     223  5.7   79     5  30
+31     37     279  7.4   76     5  31
+32     NA     286  8.6   78     6   1
+33     NA     287  9.7   74     6   2
+34     NA     242 16.1   67     6   3
+35     NA     186  9.2   84     6   4
+36     NA     220  8.6   85     6   5
+37     NA     264 14.3   79     6   6
+38     29     127  9.7   82     6   7
+39     NA     273  6.9   87     6   8
+40     71     291 13.8   90     6   9
+41     39     323 11.5   87     6  10
+42     NA     259 10.9   93     6  11
+43     NA     250  9.2   92     6  12
+44     23     148  8.0   82     6  13
+45     NA     332 13.8   80     6  14
+46     NA     322 11.5   79     6  15
+47     21     191 14.9   77     6  16
+48     37     284 20.7   72     6  17
+49     20      37  9.2   65     6  18
+50     12     120 11.5   73     6  19
+51     13     137 10.3   76     6  20
+52     NA     150  6.3   77     6  21
+53     NA      59  1.7   76     6  22
+54     NA      91  4.6   76     6  23
+55     NA     250  6.3   76     6  24
+56     NA     135  8.0   75     6  25
+57     NA     127  8.0   78     6  26
+58     NA      47 10.3   73     6  27
+59     NA      98 11.5   80     6  28
+60     NA      31 14.9   77     6  29
+61     NA     138  8.0   83     6  30
+62    135     269  4.1   84     7   1
+63     49     248  9.2   85     7   2
+64     32     236  9.2   81     7   3
+65     NA     101 10.9   84     7   4
+66     64     175  4.6   83     7   5
+67     40     314 10.9   83     7   6
+68     77     276  5.1   88     7   7
+69     97     267  6.3   92     7   8
+70     97     272  5.7   92     7   9
+71     85     175  7.4   89     7  10
+72     NA     139  8.6   82     7  11
+73     10     264 14.3   73     7  12
+74     27     175 14.9   81     7  13
+75     NA     291 14.9   91     7  14
+76      7      48 14.3   80     7  15
+77     48     260  6.9   81     7  16
+78     35     274 10.3   82     7  17
+79     61     285  6.3   84     7  18
+80     79     187  5.1   87     7  19
+81     63     220 11.5   85     7  20
+82     16       7  6.9   74     7  21
+83     NA     258  9.7   81     7  22
+84     NA     295 11.5   82     7  23
+85     80     294  8.6   86     7  24
+86    108     223  8.0   85     7  25
+87     20      81  8.6   82     7  26
+88     52      82 12.0   86     7  27
+89     82     213  7.4   88     7  28
+90     50     275  7.4   86     7  29
+91     64     253  7.4   83     7  30
+92     59     254  9.2   81     7  31
+93     39      83  6.9   81     8   1
+94      9      24 13.8   81     8   2
+95     16      77  7.4   82     8   3
+96     78      NA  6.9   86     8   4
+97     35      NA  7.4   85     8   5
+98     66      NA  4.6   87     8   6
+99    122     255  4.0   89     8   7
+100    89     229 10.3   90     8   8
+101   110     207  8.0   90     8   9
+102    NA     222  8.6   92     8  10
+103    NA     137 11.5   86     8  11
+104    44     192 11.5   86     8  12
+105    28     273 11.5   82     8  13
+106    65     157  9.7   80     8  14
+107    NA      64 11.5   79     8  15
+108    22      71 10.3   77     8  16
+109    59      51  6.3   79     8  17
+110    23     115  7.4   76     8  18
+111    31     244 10.9   78     8  19
+112    44     190 10.3   78     8  20
+113    21     259 15.5   77     8  21
+114     9      36 14.3   72     8  22
+115    NA     255 12.6   75     8  23
+116    45     212  9.7   79     8  24
+117   168     238  3.4   81     8  25
+118    73     215  8.0   86     8  26
+119    NA     153  5.7   88     8  27
+120    76     203  9.7   97     8  28
+121   118     225  2.3   94     8  29
+122    84     237  6.3   96     8  30
+123    85     188  6.3   94     8  31
+124    96     167  6.9   91     9   1
+125    78     197  5.1   92     9   2
+126    73     183  2.8   93     9   3
+127    91     189  4.6   93     9   4
+128    47      95  7.4   87     9   5
+129    32      92 15.5   84     9   6
+130    20     252 10.9   80     9   7
+131    23     220 10.3   78     9   8
+132    21     230 10.9   75     9   9
+133    24     259  9.7   73     9  10
+134    44     236 14.9   81     9  11
+135    21     259 15.5   76     9  12
+136    28     238  6.3   77     9  13
+137     9      24 10.9   71     9  14
+138    13     112 11.5   71     9  15
+139    46     237  6.9   78     9  16
+140    18     224 13.8   67     9  17
+141    13      27 10.3   76     9  18
+142    24     238 10.3   68     9  19
+143    16     201  8.0   82     9  20
+144    13     238 12.6   64     9  21
+145    23      14  9.2   71     9  22
+146    36     139 10.3   81     9  23
+147     7      49 10.3   69     9  24
+148    14      20 16.6   63     9  25
+149    30     193  6.9   70     9  26
+150    NA     145 13.2   77     9  27
+151    14     191 14.3   75     9  28
+152    18     131  8.0   76     9  29
+153    20     223 11.5   68     9  30
+> nrow(mydf)
+[1] 151
+> length(which(65 < airquality$Temp < 85))
+Error: unexpected '<' in "length(which(65 < airquality$Temp <"
+> length(which(65 < airquality$Temp & airquality$Temp < 85))
+[1] 96
+> length(which(65 <= airquality$Temp & airquality$Temp <= 85))
+[1] 103
+> student_name = c('sachin','Dhoni','Virat','Sehwag','Rahane','Rohit')
+> student_id = c('A12','D34','A12','A12','D34','Y45','T23')
+> student_df 
+Error: object 'student_df' not found
+> student_df = data.frame(Name = student_name,ID = student_id)
+Error in data.frame(Name = student_name, ID = student_id) : 
+  arguments imply differing number of rows: 6, 7
+> student_df 
+Error: object 'student_df' not found
+> student_name = append(student_name,'Yuvraj')
+> student_df = data.frame(Name = student_name,ID = student_id)
+> student_df 
+    Name  ID
+1 sachin A12
+2  Dhoni D34
+3  Virat A12
+4 Sehwag A12
+5 Rahane D34
+6  Rohit Y45
+7 Yuvraj T23
+> duplicated(student_df)
+[1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+> duplicated(student_df$Name)
+[1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+> duplicated(student_df$ID)
+[1] FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE
+> which(duplicated(student_df$ID))
+[1] 3 4 5
+> student_df[which(duplicated(student_df$ID))]
+Error in `[.data.frame`(student_df, which(duplicated(student_df$ID))) : 
+  undefined columns selected
+> ind
+[1]  5 27
+> ind1 = which(duplicated(student_df$ID))
+> ind1
+[1] 3 4 5
+> dup_id = student_df$ID[ind1]
+> dup_id
+[1] "A12" "A12" "D34"
+> dup_id = unique(student_df$ID[ind1])
+> dup_id
+[1] "A12" "D34"
+> student_df$ID %in% dup_id
+[1]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE
+> which(student_df$ID %in% dup_id)
+[1] 1 2 3 4 5
+> ind2 = which(student_df$ID %in% dup_id)
+> df1 = student_df[ind2,]
+> df2 = student_df[-ind2,]
+> df1
+    Name  ID
+1 sachin A12
+2  Dhoni D34
+3  Virat A12
+4 Sehwag A12
+5 Rahane D34
+> df2
+    Name  ID
+6  Rohit Y45
+7 Yuvraj T23
+> letters
+ [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n"
+[15] "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"
+> LETTERS
+ [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N"
+[15] "O" "P" "Q" "R" "S" "T" "U" "V" "W" "X" "Y" "Z"
+> head(faithful)
+  eruptions waiting
+1     3.600      79
+2     1.800      54
+3     3.333      74
+4     2.283      62
+5     4.533      85
+6     2.883      55
+> head(stackloss)
+  Air.Flow Water.Temp Acid.Conc. stack.loss
+1       80         27         89         42
+2       80         27         88         37
+3       75         25         90         37
+4       62         24         87         28
+5       62         22         87         18
+6       62         23         87         18
+> head(cars)
+  speed dist
+1     4    2
+2     4   10
+3     7    4
+4     7   22
+5     8   16
+6     9   10
+> df1 = read_excel('locations.xlsx',sheet = 'Pune')
+> df2 = read_excel('locations.xlsx',sheet = 'Mumbai')
+> df1
+# A tibble: 5 × 3
+  Name    Subject     Grade
+  <chr>   <chr>       <chr>
+1 Rakesh  Python      A    
+2 Manoj   MLPython    C    
+3 Vaibhav Statistics  B    
+4 Hitesh  CommSkills  A    
+5 Suyash  ProjectMgmt B    
+> df2
+# A tibble: 5 × 3
+  Name     Subject    Grade
+  <chr>    <chr>      <chr>
+1 Vaibhav  Six Sigma  A    
+2 Deepika  Statistics B    
+3 Arjun    CommSkills A    
+4 Chetan   Python     A    
+5 Abhishek MLPython   B    
+> merge(df1,df2)
+[1] Name    Subject Grade  
+<0 rows> (or 0-length row.names)
+> merge(df1,df2 by='Subject')
+Error: unexpected symbol in "merge(df1,df2 by"
+> merge(df1,df2, by='Subject')
+     Subject  Name.x Grade.x   Name.y Grade.y
+1 CommSkills  Hitesh       A    Arjun       A
+2   MLPython   Manoj       C Abhishek       B
+3     Python  Rakesh       A   Chetan       A
+4 Statistics Vaibhav       B  Deepika       B
+> merge(df1,df2, by=c('Subject','Grade'))
+     Subject Grade  Name.x  Name.y
+1 CommSkills     A  Hitesh   Arjun
+2     Python     A  Rakesh  Chetan
+3 Statistics     B Vaibhav Deepika
+> merge(df1,df2, by=c('Subject','Grade')all = T)
+Error: unexpected symbol in "merge(df1,df2, by=c('Subject','Grade')all"
+> merge(df1,df2, by=c('Subject','Grade'),all = T)
+      Subject Grade  Name.x   Name.y
+1  CommSkills     A  Hitesh    Arjun
+2    MLPython     B    <NA> Abhishek
+3    MLPython     C   Manoj     <NA>
+4 ProjectMgmt     B  Suyash     <NA>
+5      Python     A  Rakesh   Chetan
+6   Six Sigma     A    <NA>  Vaibhav
+7  Statistics     B Vaibhav  Deepika
+> merge(df1,df2, by='Subject',all = T)
+      Subject  Name.x Grade.x   Name.y Grade.y
+1  CommSkills  Hitesh       A    Arjun       A
+2    MLPython   Manoj       C Abhishek       B
+3 ProjectMgmt  Suyash       B     <NA>    <NA>
+4      Python  Rakesh       A   Chetan       A
+5   Six Sigma    <NA>    <NA>  Vaibhav       A
+6  Statistics Vaibhav       B  Deepika       B
+> merge(df1,df2, by='Subject',all = F)
+     Subject  Name.x Grade.x   Name.y Grade.y
+1 CommSkills  Hitesh       A    Arjun       A
+2   MLPython   Manoj       C Abhishek       B
+3     Python  Rakesh       A   Chetan       A
+4 Statistics Vaibhav       B  Deepika       B
+> merge(df1,df2, by='Subject',all.x = T)
+      Subject  Name.x Grade.x   Name.y Grade.y
+1  CommSkills  Hitesh       A    Arjun       A
+2    MLPython   Manoj       C Abhishek       B
+3 ProjectMgmt  Suyash       B     <NA>    <NA>
+4      Python  Rakesh       A   Chetan       A
+5  Statistics Vaibhav       B  Deepika       B
+> merge(df1,df2, by='Subject',all.y = T)
+     Subject  Name.x Grade.x   Name.y Grade.y
+1 CommSkills  Hitesh       A    Arjun       A
+2   MLPython   Manoj       C Abhishek       B
+3     Python  Rakesh       A   Chetan       A
+4  Six Sigma    <NA>    <NA>  Vaibhav       A
+5 Statistics Vaibhav       B  Deepika       B
+> df1 = read_excel('CDAC_DataBook.xlsx',sheet = 'Salary')
+Error: Sheet 'Salary' not found
+> df1 = read_excel('CDAC_DataBook.xlsx',sheet = 'salary')
+Error: Sheet 'salary' not found
+> df1 = read_excel('locations.xlsx',sheet = 'Salary')
+> df1 = read_excel('locations.xlsx',sheet = 'Deptt')
+> df1
+# A tibble: 5 × 3
+  Name    EmpID Deptt      
+  <chr>   <chr> <chr>      
+1 Sudeep  A342  Quality    
+2 Ruchika C578  Sales      
+3 Deepika J436  Admin      
+4 Arjun   A342  Procurement
+5 Rishi   R475  Prodn      
+> df2
+# A tibble: 5 × 3
+  Name     Subject    Grade
+  <chr>    <chr>      <chr>
+1 Vaibhav  Six Sigma  A    
+2 Deepika  Statistics B    
+3 Arjun    CommSkills A    
+4 Chetan   Python     A    
+5 Abhishek MLPython   B    
+> df1 = read_excel('locations.xlsx',sheet = 'Salary')
+> df2 = read_excel('locations.xlsx',sheet = 'Deptt')
+> df1
+# A tibble: 5 × 3
+  Name     EmpID Salary
+  <chr>    <chr>  <dbl>
+1 Sudeep   A342      56
+2 Deepika  J436      45
+3 Chetan   B435      76
+4 Abhishek C234      47
+5 Rishi    R475      38
+> df2 = read_excel('locations.xlsx',sheet = 'Deptt')
+> df2
+# A tibble: 5 × 3
+  Name    EmpID Deptt      
+  <chr>   <chr> <chr>      
+1 Sudeep  A342  Quality    
+2 Ruchika C578  Sales      
+3 Deepika J436  Admin      
+4 Arjun   A342  Procurement
+5 Rishi   R475  Prodn      
+> merge(df1,df2)
+     Name EmpID Salary   Deptt
+1 Deepika  J436     45   Admin
+2   Rishi  R475     38   Prodn
+3  Sudeep  A342     56 Quality
+> merge(df1,df2,all = T)
+      Name EmpID Salary       Deptt
+1 Abhishek  C234     47        <NA>
+2    Arjun  A342     NA Procurement
+3   Chetan  B435     76        <NA>
+4  Deepika  J436     45       Admin
+5    Rishi  R475     38       Prodn
+6  Ruchika  C578     NA       Sales
+7   Sudeep  A342     56     Quality
+> x = c(4,8,7,2,3,6,9,6)
+> sort(x)
+[1] 2 3 4 6 6 7 8 9
+> x
+[1] 4 8 7 2 3 6 9 6
+> order(x)
+[1] 4 5 1 6 8 3 2 7
+> order(x, decreasing = T)
+[1] 7 2 3 6 8 1 5 4
+> q = df$Quantity
+> ind = order(q)
+> head(ind)
+[1]  9 17 35  3 31 37
+> tail(ind)
+[1] 18 26 34 10 40 25
+> df_sorted = df[ind,]
+> head(df_sorted)
+# A tibble: 6 × 3
+  MaterialID Location Quantity
+  <chr>      <chr>       <dbl>
+1 GCVB-79    MWH-2          10
+2 SDRT-67    MWH-5          12
+3 GCVB-79    MWH-5          26
+4 LXCV-21    MWH-2          27
+5 DDBN-89    MWH-4          27
+6 GCVB-79    MWH-2          28
+> x[5]
+[1] 3
+> x[7]
+[1] 9
+> head(df)
+# A tibble: 6 × 3
+  MaterialID Location Quantity
+  <chr>      <chr>       <dbl>
+1 TMI-43T    MWH-4          34
+2 AXCP-78    MWH-1          67
+3 LXCV-21    MWH-2          27
+4 AXCP-78    MWH-5          65
+5 AXCP-78    MWH-4          36
+6 TMI-43T    MWH-4          78
+> ind = with(df, order(Location,MaterialID,Quantity))
+> df_sorted = df[ind,]
+> print(df_sorted)
+# A tibble: 50 × 3
+   MaterialID Location Quantity
+   <chr>      <chr>       <dbl>
+ 1 AXCP-78    MWH-1          67
+ 2 AXCP-78    MWH-1          75
+ 3 AXCP-78    MWH-1         109
+ 4 AXCP-78    MWH-1         145
+ 5 AXCP-78    MWH-1         152
+ 6 DDBN-89    MWH-1          34
+ 7 DDBN-89    MWH-1          39
+ 8 DDBN-89    MWH-1          57
+ 9 SDRT-67    MWH-1          34
+10 SDRT-67    MWH-1          57
+# ℹ 40 more rows
+# ℹ Use `print(n = ...)` to see more rows
+> install.packages('dplyr')
+WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+Installing package into ‘C:/Users/vaibh/AppData/Local/R/win-library/4.3’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘withr’, ‘generics’, ‘tidyselect’
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/withr_2.5.0.zip'
+Content type 'application/zip' length 231854 bytes (226 KB)
+downloaded 226 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/generics_0.1.3.zip'
+Content type 'application/zip' length 79901 bytes (78 KB)
+downloaded 78 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/tidyselect_1.2.0.zip'
+Content type 'application/zip' length 224355 bytes (219 KB)
+downloaded 219 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/dplyr_1.1.2.zip'
+Content type 'application/zip' length 1551874 bytes (1.5 MB)
+downloaded 1.5 MB
+
+package ‘withr’ successfully unpacked and MD5 sums checked
+package ‘generics’ successfully unpacked and MD5 sums checked
+package ‘tidyselect’ successfully unpacked and MD5 sums checked
+package ‘dplyr’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+	C:\Users\vaibh\AppData\Local\Temp\RtmpY7dws6\downloaded_packages
+> install.packages('tidyverse')
+WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+Installing package into ‘C:/Users/vaibh/AppData/Local/R/win-library/4.3’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘colorspace’, ‘sys’, ‘bit’, ‘ps’, ‘farver’, ‘labeling’, ‘munsell’, ‘RColorBrewer’, ‘viridisLite’, ‘askpass’, ‘bit64’, ‘processx’, ‘backports’, ‘blob’, ‘DBI’, ‘data.table’, ‘gtable’, ‘isoband’, ‘scales’, ‘gargle’, ‘uuid’, ‘curl’, ‘ids’, ‘rematch2’, ‘openssl’, ‘timechange’, ‘systemfonts’, ‘textshaping’, ‘clipr’, ‘vroom’, ‘tzdb’, ‘callr’, ‘selectr’, ‘broom’, ‘conflicted’, ‘dbplyr’, ‘dtplyr’, ‘forcats’, ‘ggplot2’, ‘googledrive’, ‘googlesheets4’, ‘haven’, ‘httr’, ‘lubridate’, ‘modelr’, ‘purrr’, ‘ragg’, ‘readr’, ‘reprex’, ‘rstudioapi’, ‘rvest’, ‘tidyr’, ‘xml2’
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/colorspace_2.1-0.zip'
+Content type 'application/zip' length 2633785 bytes (2.5 MB)
+downloaded 2.5 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/sys_3.4.2.zip'
+Content type 'application/zip' length 47155 bytes (46 KB)
+downloaded 46 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/bit_4.0.5.zip'
+Content type 'application/zip' length 1136552 bytes (1.1 MB)
+downloaded 1.1 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/ps_1.7.5.zip'
+Content type 'application/zip' length 552576 bytes (539 KB)
+downloaded 539 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/farver_2.1.1.zip'
+Content type 'application/zip' length 1505090 bytes (1.4 MB)
+downloaded 1.4 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/labeling_0.4.2.zip'
+Content type 'application/zip' length 62592 bytes (61 KB)
+downloaded 61 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/munsell_0.5.0.zip'
+Content type 'application/zip' length 244883 bytes (239 KB)
+downloaded 239 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/RColorBrewer_1.1-3.zip'
+Content type 'application/zip' length 55876 bytes (54 KB)
+downloaded 54 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/viridisLite_0.4.2.zip'
+Content type 'application/zip' length 1300107 bytes (1.2 MB)
+downloaded 1.2 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/askpass_1.1.zip'
+Content type 'application/zip' length 73502 bytes (71 KB)
+downloaded 71 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/bit64_4.0.5.zip'
+Content type 'application/zip' length 494153 bytes (482 KB)
+downloaded 482 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/processx_3.8.1.zip'
+Content type 'application/zip' length 860857 bytes (840 KB)
+downloaded 840 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/backports_1.4.1.zip'
+Content type 'application/zip' length 101437 bytes (99 KB)
+downloaded 99 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/blob_1.2.4.zip'
+Content type 'application/zip' length 48398 bytes (47 KB)
+downloaded 47 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/DBI_1.1.3.zip'
+Content type 'application/zip' length 774371 bytes (756 KB)
+downloaded 756 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/data.table_1.14.8.zip'
+Content type 'application/zip' length 2289677 bytes (2.2 MB)
+downloaded 2.2 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/gtable_0.3.3.zip'
+Content type 'application/zip' length 225552 bytes (220 KB)
+downloaded 220 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/isoband_0.2.7.zip'
+Content type 'application/zip' length 1968195 bytes (1.9 MB)
+downloaded 1.9 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/scales_1.2.1.zip'
+Content type 'application/zip' length 613988 bytes (599 KB)
+downloaded 599 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/gargle_1.5.1.zip'
+Content type 'application/zip' length 793852 bytes (775 KB)
+downloaded 775 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/uuid_1.1-0.zip'
+Content type 'application/zip' length 49491 bytes (48 KB)
+downloaded 48 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/curl_5.0.1.zip'
+Content type 'application/zip' length 2654815 bytes (2.5 MB)
+downloaded 2.5 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/ids_1.0.1.zip'
+Content type 'application/zip' length 123863 bytes (120 KB)
+downloaded 120 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/rematch2_2.1.2.zip'
+Content type 'application/zip' length 47522 bytes (46 KB)
+downloaded 46 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/openssl_2.0.6.zip'
+Content type 'application/zip' length 2657972 bytes (2.5 MB)
+downloaded 2.5 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/timechange_0.2.0.zip'
+Content type 'application/zip' length 516497 bytes (504 KB)
+downloaded 504 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/systemfonts_1.0.4.zip'
+Content type 'application/zip' length 1053757 bytes (1.0 MB)
+downloaded 1.0 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/textshaping_0.3.6.zip'
+Content type 'application/zip' length 1021623 bytes (997 KB)
+downloaded 997 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/clipr_0.8.0.zip'
+Content type 'application/zip' length 54745 bytes (53 KB)
+downloaded 53 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/vroom_1.6.3.zip'
+Content type 'application/zip' length 1370085 bytes (1.3 MB)
+downloaded 1.3 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/tzdb_0.4.0.zip'
+Content type 'application/zip' length 1034088 bytes (1009 KB)
+downloaded 1009 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/callr_3.7.3.zip'
+Content type 'application/zip' length 439843 bytes (429 KB)
+downloaded 429 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/selectr_0.4-2.zip'
+Content type 'application/zip' length 492621 bytes (481 KB)
+downloaded 481 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/broom_1.0.5.zip'
+Content type 'application/zip' length 1860988 bytes (1.8 MB)
+downloaded 1.8 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/conflicted_1.2.0.zip'
+Content type 'application/zip' length 57422 bytes (56 KB)
+downloaded 56 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/dbplyr_2.3.2.zip'
+Content type 'application/zip' length 1143635 bytes (1.1 MB)
+downloaded 1.1 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/dtplyr_1.3.1.zip'
+Content type 'application/zip' length 353358 bytes (345 KB)
+downloaded 345 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/forcats_1.0.0.zip'
+Content type 'application/zip' length 428018 bytes (417 KB)
+downloaded 417 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/ggplot2_3.4.2.zip'
+Content type 'application/zip' length 4294341 bytes (4.1 MB)
+downloaded 4.1 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/googledrive_2.1.1.zip'
+Content type 'application/zip' length 1895748 bytes (1.8 MB)
+downloaded 1.8 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/googlesheets4_1.1.1.zip'
+Content type 'application/zip' length 513055 bytes (501 KB)
+downloaded 501 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/haven_2.5.2.zip'
+Content type 'application/zip' length 775284 bytes (757 KB)
+downloaded 757 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/httr_1.4.6.zip'
+Content type 'application/zip' length 514089 bytes (502 KB)
+downloaded 502 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/lubridate_1.9.2.zip'
+Content type 'application/zip' length 983173 bytes (960 KB)
+downloaded 960 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/modelr_0.1.11.zip'
+Content type 'application/zip' length 202395 bytes (197 KB)
+downloaded 197 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/purrr_1.0.1.zip'
+Content type 'application/zip' length 497940 bytes (486 KB)
+downloaded 486 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/ragg_1.2.5.zip'
+Content type 'application/zip' length 1305703 bytes (1.2 MB)
+downloaded 1.2 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/readr_2.1.4.zip'
+Content type 'application/zip' length 1205033 bytes (1.1 MB)
+downloaded 1.1 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/reprex_2.0.2.zip'
+Content type 'application/zip' length 505331 bytes (493 KB)
+downloaded 493 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/rstudioapi_0.14.zip'
+Content type 'application/zip' length 316838 bytes (309 KB)
+downloaded 309 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/rvest_1.0.3.zip'
+Content type 'application/zip' length 219113 bytes (213 KB)
+downloaded 213 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/tidyr_1.3.0.zip'
+Content type 'application/zip' length 1292719 bytes (1.2 MB)
+downloaded 1.2 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/xml2_1.3.4.zip'
+Content type 'application/zip' length 1558135 bytes (1.5 MB)
+downloaded 1.5 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/tidyverse_2.0.0.zip'
+Content type 'application/zip' length 430811 bytes (420 KB)
+downloaded 420 KB
+
+package ‘colorspace’ successfully unpacked and MD5 sums checked
+package ‘sys’ successfully unpacked and MD5 sums checked
+package ‘bit’ successfully unpacked and MD5 sums checked
+package ‘ps’ successfully unpacked and MD5 sums checked
+package ‘farver’ successfully unpacked and MD5 sums checked
+package ‘labeling’ successfully unpacked and MD5 sums checked
+package ‘munsell’ successfully unpacked and MD5 sums checked
+package ‘RColorBrewer’ successfully unpacked and MD5 sums checked
+package ‘viridisLite’ successfully unpacked and MD5 sums checked
+package ‘askpass’ successfully unpacked and MD5 sums checked
+package ‘bit64’ successfully unpacked and MD5 sums checked
+package ‘processx’ successfully unpacked and MD5 sums checked
+package ‘backports’ successfully unpacked and MD5 sums checked
+package ‘blob’ successfully unpacked and MD5 sums checked
+package ‘DBI’ successfully unpacked and MD5 sums checked
+package ‘data.table’ successfully unpacked and MD5 sums checked
+package ‘gtable’ successfully unpacked and MD5 sums checked
+package ‘isoband’ successfully unpacked and MD5 sums checked
+package ‘scales’ successfully unpacked and MD5 sums checked
+package ‘gargle’ successfully unpacked and MD5 sums checked
+package ‘uuid’ successfully unpacked and MD5 sums checked
+package ‘curl’ successfully unpacked and MD5 sums checked
+package ‘ids’ successfully unpacked and MD5 sums checked
+package ‘rematch2’ successfully unpacked and MD5 sums checked
+package ‘openssl’ successfully unpacked and MD5 sums checked
+package ‘timechange’ successfully unpacked and MD5 sums checked
+package ‘systemfonts’ successfully unpacked and MD5 sums checked
+package ‘textshaping’ successfully unpacked and MD5 sums checked
+package ‘clipr’ successfully unpacked and MD5 sums checked
+package ‘vroom’ successfully unpacked and MD5 sums checked
+package ‘tzdb’ successfully unpacked and MD5 sums checked
+package ‘callr’ successfully unpacked and MD5 sums checked
+package ‘selectr’ successfully unpacked and MD5 sums checked
+package ‘broom’ successfully unpacked and MD5 sums checked
+package ‘conflicted’ successfully unpacked and MD5 sums checked
+package ‘dbplyr’ successfully unpacked and MD5 sums checked
+package ‘dtplyr’ successfully unpacked and MD5 sums checked
+package ‘forcats’ successfully unpacked and MD5 sums checked
+package ‘ggplot2’ successfully unpacked and MD5 sums checked
+package ‘googledrive’ successfully unpacked and MD5 sums checked
+package ‘googlesheets4’ successfully unpacked and MD5 sums checked
+package ‘haven’ successfully unpacked and MD5 sums checked
+package ‘httr’ successfully unpacked and MD5 sums checked
+package ‘lubridate’ successfully unpacked and MD5 sums checked
+package ‘modelr’ successfully unpacked and MD5 sums checked
+package ‘purrr’ successfully unpacked and MD5 sums checked
+package ‘ragg’ successfully unpacked and MD5 sums checked
+package ‘readr’ successfully unpacked and MD5 sums checked
+package ‘reprex’ successfully unpacked and MD5 sums checked
+package ‘rstudioapi’ successfully unpacked and MD5 sums checked
+package ‘rvest’ successfully unpacked and MD5 sums checked
+package ‘tidyr’ successfully unpacked and MD5 sums checked
+package ‘xml2’ successfully unpacked and MD5 sums checked
+package ‘tidyverse’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+	C:\Users\vaibh\AppData\Local\Temp\RtmpY7dws6\downloaded_packages
+> round(34,72345,3)
+Error: 3 arguments passed to 'round' which requires 1 or 2 arguments
+> round(34,72345,4)
+Error: 3 arguments passed to 'round' which requires 1 or 2 arguments
+> round(34.72345,4)
+[1] 34.7234
+> 32.7234 %>% round(3)
+Error in 32.7234 %>% round(3) : could not find function "%>%"
+> 32.7234 %>% round(2)
+Error in 32.7234 %>% round(2) : could not find function "%>%"
+> 32.7234 % > % round(3)
+Error in 32.7234 % > % round(3) : could not find function "% > %"
+> library('dplyr')
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+> library('tidyverse')
+── Attaching core tidyverse packages ─────── tidyverse 2.0.0 ──
+✔ forcats   1.0.0     ✔ readr     2.1.4
+✔ ggplot2   3.4.2     ✔ stringr   1.5.0
+✔ lubridate 1.9.2     ✔ tibble    3.2.1
+✔ purrr     1.0.1     ✔ tidyr     1.3.0
+── Conflicts ───────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package to force all conflicts to become errors
+> 32.7234 %>% round(3)
+[1] 32.723
+> head(df)
+# A tibble: 6 × 3
+  MaterialID Location Quantity
+  <chr>      <chr>       <dbl>
+1 TMI-43T    MWH-4          34
+2 AXCP-78    MWH-1          67
+3 LXCV-21    MWH-2          27
+4 AXCP-78    MWH-5          65
+5 AXCP-78    MWH-4          36
+6 TMI-43T    MWH-4          78
+> mean(df$Quantity)
+[1] 57.7
+> summarise(df,MyData = mean(quantity))
+Error in `summarise()`:
+ℹ In argument: `MyData = mean(quantity)`.
+Caused by error:
+! object 'quantity' not found
+Run `rlang::last_trace()` to see where the error occurred.
+> library('tidyverse')
+> summarise(df,MyData = mean(Quantity))
+# A tibble: 1 × 1
+  MyData
+   <dbl>
+1   57.7
+> summarise(group_by(df,Location),MyData = mean(Quantity))
+# A tibble: 5 × 2
+  Location MyData
+  <chr>     <dbl>
+1 MWH-1      80.8
+2 MWH-2      44.1
+3 MWH-3      43.5
+4 MWH-4      48.5
+5 MWH-5      63.4
+> grp1 = group_by(df,Location,MaterialID)
+> summarise(grp1,TotalQuantity = sum(Quantity), Nums = n())
+`summarise()` has grouped output by 'Location'. You can
+override using the `.groups` argument.
+# A tibble: 24 × 4
+# Groups:   Location [5]
+   Location MaterialID TotalQuantity  Nums
+   <chr>    <chr>              <dbl> <int>
+ 1 MWH-1    AXCP-78              548     5
+ 2 MWH-1    DDBN-89              130     3
+ 3 MWH-1    SDRT-67               91     2
+ 4 MWH-1    TMI-43T              120     1
+ 5 MWH-2    AXCP-78               85     1
+ 6 MWH-2    DDBN-89               69     1
+ 7 MWH-2    GCVB-79              156     4
+ 8 MWH-2    LXCV-21               27     1
+ 9 MWH-2    SDRT-67               31     1
+10 MWH-2    TMI-43T               29     1
+# ℹ 14 more rows
+# ℹ Use `print(n = ...)` to see more rows
+> newdf = summarise(grp1,TotalQuantity = sum(Quantity), Nums = n())
+`summarise()` has grouped output by 'Location'. You can
+override using the `.groups` argument.
+> newdf
+# A tibble: 24 × 4
+# Groups:   Location [5]
+   Location MaterialID TotalQuantity  Nums
+   <chr>    <chr>              <dbl> <int>
+ 1 MWH-1    AXCP-78              548     5
+ 2 MWH-1    DDBN-89              130     3
+ 3 MWH-1    SDRT-67               91     2
+ 4 MWH-1    TMI-43T              120     1
+ 5 MWH-2    AXCP-78               85     1
+ 6 MWH-2    DDBN-89               69     1
+ 7 MWH-2    GCVB-79              156     4
+ 8 MWH-2    LXCV-21               27     1
+ 9 MWH-2    SDRT-67               31     1
+10 MWH-2    TMI-43T               29     1
+# ℹ 14 more rows
+# ℹ Use `print(n = ...)` to see more rows
+> mydf = subset(newdf, newdf$Location == 'MWH-1')
+> mydf
+# A tibble: 4 × 4
+# Groups:   Location [1]
+  Location MaterialID TotalQuantity  Nums
+  <chr>    <chr>              <dbl> <int>
+1 MWH-1    AXCP-78              548     5
+2 MWH-1    DDBN-89              130     3
+3 MWH-1    SDRT-67               91     2
+4 MWH-1    TMI-43T              120     1
+> df = read_excel('data1.xlsx')
+> df
+# A tibble: 12 × 5
+   Country Disease      `2019` `2020` `2021`
+   <chr>   <chr>         <dbl>  <dbl>  <dbl>
+ 1 India   Cancer           12     94     35
+ 2 UK      Cancer           95     19     84
+ 3 US      Cancer           98     19     53
+ 4 Japan   Cancer           89     52     14
+ 5 India   Covid            38     19     62
+ 6 UK      Covid            69     73     35
+ 7 US      Covid            87     97     35
+ 8 Japan   Covid            14     12     90
+ 9 India   Heart Attack     84     10     98
+10 UK      Heart Attack     44     17     24
+11 US      Heart Attack     34     40     54
+12 Japan   Heart Attack     11     43     75
+> df1 = gather(df,Year,Cases,c('2019','2020','2021'))
+> df1
+# A tibble: 36 × 4
+   Country Disease      Year  Cases
+   <chr>   <chr>        <chr> <dbl>
+ 1 India   Cancer       2019     12
+ 2 UK      Cancer       2019     95
+ 3 US      Cancer       2019     98
+ 4 Japan   Cancer       2019     89
+ 5 India   Covid        2019     38
+ 6 UK      Covid        2019     69
+ 7 US      Covid        2019     87
+ 8 Japan   Covid        2019     14
+ 9 India   Heart Attack 2019     84
+10 UK      Heart Attack 2019     44
+# ℹ 26 more rows
+# ℹ Use `print(n = ...)` to see more rows
+> print(n = df1)
+Error in print.tbl(n = df1) : argument "x" is missing, with no default
+> print(n = )
+Error in print.default(n = ) : argument "x" is missing, with no default
+> print(n = .Last.value)
+Error in print.tbl(n = .Last.value) : 
+  argument "x" is missing, with no default
+> print(n = .Last.value)
+Error in print.tbl(n = .Last.value) : 
+  argument "x" is missing, with no default
+> print(n = .Last.value)
+Error in print.tbl(n = .Last.value) : 
+  argument "x" is missing, with no default
+> df2 = spread(df1,Diseases,Cases)
+Error in `spread()`:
+Caused by error:
+! object 'Diseases' not found
+Run `rlang::last_trace()` to see where the error occurred.
+> df2
+# A tibble: 5 × 3
+  Name    EmpID Deptt      
+  <chr>   <chr> <chr>      
+1 Sudeep  A342  Quality    
+2 Ruchika C578  Sales      
+3 Deepika J436  Admin      
+4 Arjun   A342  Procurement
+5 Rishi   R475  Prodn      
+> df1
+# A tibble: 36 × 4
+   Country Disease      Year  Cases
+   <chr>   <chr>        <chr> <dbl>
+ 1 India   Cancer       2019     12
+ 2 UK      Cancer       2019     95
+ 3 US      Cancer       2019     98
+ 4 Japan   Cancer       2019     89
+ 5 India   Covid        2019     38
+ 6 UK      Covid        2019     69
+ 7 US      Covid        2019     87
+ 8 Japan   Covid        2019     14
+ 9 India   Heart Attack 2019     84
+10 UK      Heart Attack 2019     44
+# ℹ 26 more rows
+# ℹ Use `print(n = ...)` to see more rows
+> df2 = spread(df1,Diseases,Cases)
+Error in `spread()`:
+Caused by error:
+! object 'Diseases' not found
+Run `rlang::last_trace()` to see where the error occurred.
+> df2 = spread(df1,Disease,Cases)
+> df1
+# A tibble: 36 × 4
+   Country Disease      Year  Cases
+   <chr>   <chr>        <chr> <dbl>
+ 1 India   Cancer       2019     12
+ 2 UK      Cancer       2019     95
+ 3 US      Cancer       2019     98
+ 4 Japan   Cancer       2019     89
+ 5 India   Covid        2019     38
+ 6 UK      Covid        2019     69
+ 7 US      Covid        2019     87
+ 8 Japan   Covid        2019     14
+ 9 India   Heart Attack 2019     84
+10 UK      Heart Attack 2019     44
+# ℹ 26 more rows
+# ℹ Use `print(n = ...)` to see more rows
+> df2
+# A tibble: 12 × 5
+   Country Year  Cancer Covid `Heart Attack`
+   <chr>   <chr>  <dbl> <dbl>          <dbl>
+ 1 India   2019      12    38             84
+ 2 India   2020      94    19             10
+ 3 India   2021      35    62             98
+ 4 Japan   2019      89    14             11
+ 5 Japan   2020      52    12             43
+ 6 Japan   2021      14    90             75
+ 7 UK      2019      95    69             44
+ 8 UK      2020      19    73             17
+ 9 UK      2021      84    35             24
+10 US      2019      98    87             34
+11 US      2020      19    97             40
+12 US      2021      53    35             54
+> 
