@@ -1,0 +1,12 @@
+Example 1 -->
+
+step 1 - loading data
+
+df = pd.read_excel('CDAC_DataBook.xlsx',sheet_name='mtcars')
+df.head()
+
+step 2 - 
+
+df=df[['hp','wt','am']]
+df.head()
+

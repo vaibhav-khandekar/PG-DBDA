@@ -1,0 +1,149 @@
+--- time series --->
+
+import pandas as pd
+import numpy as np
+import matplotlib
+from matplotlib import pyplot as plt
+import statsmodels
+import statsmodels.api as sm
+from statsmodels.tsa.seasonal import seasonal_decompose #splitting TS into components
+from sklearn.metrics import mean_squared_error #calculated rmse
+from math import sqrt
+
+df = pd.read_excel('CDAC_DataBook.xlsx',sheet_name='birth')
+df.BirthRate.plot()
+
+df_train = df.iloc[:144]
+df_test = df.iloc[144:]
+
+df_train.shape
+df_test.shape
+
+df_train.BirthRate.plot()
+df_test.BirthRate.plot()
+
+res = statsmodels.tsa.seasonal.seasonal_decompose(df.BirthRate,period=12) 
+res.plot() #to view the components of time series
+
+--- #1. Naive Method --->
+
+dd = np.asarray(df_train.BirthRate)
+y_hat = df_test.copy()
+y_hat['naive'] = dd[len(dd)-1] #to get the last value
+y_hat.head()
+y_hat.tail()
+
+plt.figure(figsize=(12,8))
+plt.plot(df_train.index,df_train.BirthRate,label='Train')
+plt.plot(df_test.index,df_test.BirthRate,label='Test')
+plt.plot(y_hat.index,y_hat.naive,label='Forecast')
+plt.legend()
+
+rms = sqrt(mean_squared_error(df_test.BirthRate,y_hat.naive))
+rms
+
+--- #2. simple average method --->
+
+y_hat = df_test.copy()
+y_hat_avg = df_test.copy()
+y_hat_avg['MeanForecast'] = df_train['BirthRate'].mean()
+
+y_hat_avg.head()
+
+y_hat_avg.tail()
+
+plt.figure(figsize=(12,8))
+plt.plot(df_train.index,df_train.BirthRate,label='Train')
+plt.plot(df_test.index,df_test.BirthRate,label='Test')
+plt.plot(y_hat.index,y_hat_avg.MeanForecast,label='Forecast')
+plt.legend()
+
+rms = sqrt(mean_squared_error(df_test.BirthRate,y_hat_avg.MeanForecast))
+rms
+
+--- #3. Moving Average --->
+
+y_hat_avg['MovAvgForecast'] = df_train['BirthRate'].rolling(12).mean().iloc[-1]
+
+plt.figure(figsize=(12,8))
+plt.plot(df_train.index,df_train.BirthRate,label='Train')
+plt.plot(df_test.index,df_test.BirthRate,label='Test')
+plt.plot(y_hat.index,y_hat_avg.MovAvgForecast,label='Forecast')
+plt.legend()
+
+rms = sqrt(mean_squared_error(df_test.BirthRate,y_hat_avg.MovAvgForecast))
+rms
+
+--- #4. Weighted Moving Average --->
+
+x = df_train['BirthRate'].iloc[-12:]
+
+wt_sum = 0
+denom = 0
+for ctr in range(len(x)):
+    wt_sum = wt_sum + x.iloc[ctr]*(ctr+1)
+    denom = denom + (ctr+1)
+wt_avg = wt_sum/denom
+
+y_hat_avg['WtMovAvgForecast'] = wt_avg
+
+plt.figure(figsize=(12,8))
+plt.plot(df_train.index,df_train.BirthRate,label='Train')
+plt.plot(df_test.index,df_test.BirthRate,label='Test')
+plt.plot(y_hat.index,y_hat_avg.WtMovAvgForecast,label='Forecast')
+plt.legend()
+
+rms = sqrt(mean_squared_error(df_test.BirthRate,y_hat_avg.WtMovAvgForecast))
+rms
+
+--- Simple Exponential Smoothing --->
+
+from statsmodels.tsa.api import ExponentialSmoothing, SimpleExpSmoothing, Holt
+
+mod1 = SimpleExpSmoothing(np.asarray(df_train.BirthRate)).fit(smoothing_level = 0.8)
+y_hat_avg['SES'] = mod1.forecast(len(df_test))
+
+plt.figure(figsize=(12,8))
+plt.plot(df_train.index,df_train.BirthRate,label='Train')
+plt.plot(df_test.index,df_test.BirthRate,label='Test')
+plt.plot(y_hat.index,y_hat_avg.SES,label='Forecast')
+plt.legend()
+
+rms = sqrt(mean_squared_error(df_test.BirthRate,y_hat_avg.SES))
+rms
+
+
+--- Holt's Linear Trend Method --->
+
+mod2 = Holt(np.asarray(df_train.BirthRate)).fit(smoothing_level = 0.6)
+y_hat_avg['HoltLinear'] = mod2.forecast(len(df_test))
+
+plt.figure(figsize=(12,8))
+plt.plot(df_train.index,df_train.BirthRate,label='Train')
+plt.plot(df_test.index,df_test.BirthRate,label='Test')
+plt.plot(y_hat.index,y_hat_avg.HoltLinear,label='Forecast')
+plt.legend()
+
+rms = sqrt(mean_squared_error(df_test.BirthRate,y_hat_avg.HoltLinear))
+rms
+
+--- Holt's Linear Winter Method --->
+
+
+--- --->
+
+from statsmodels.graphics.tsaplots import plot_acf,plot_pacf
+
+plt.figure(figsize=(12,8))
+plot_acf(df_train.diff().dropna())
+
+plot_pacf(df_train.diff().dropna())
+
+--- ARIMA model --->
+
+from statsmodels.tsa.arima.model import ARIMA
+
+mod4 = ARIMA(df_train,order=(1,1,2)).fit()
+
+pred = mod4.predict(len(df_test))
+

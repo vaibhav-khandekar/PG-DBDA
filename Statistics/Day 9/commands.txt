@@ -1,0 +1,97 @@
+Example 1 [Simple Linear Regression] -->
+
+step 1 - loading data
+
+df = pd.read_excel('CDAC_DataBook.xlsx', sheet_name='faithful')
+df.head()
+
+stp 2 - spliting data
+
+x_train,x_test,y_train,y_test = train_test_split(df['waiting'],df['eruptions'],test_size = 0.25)
+x_train.head()
+y_train.head()
+
+step 3 - adding constant to the predictor column
+
+x_train = sm.add_constant (x_train,prepend = False)
+
+step 4 - creating model
+
+mod1 = sm.OLS(y_train,x_train).fit()
+
+step 5 - analyze model
+
+print(mod1.summary())
+
+step 6 - 
+
+#actual output
+x_test = sm.add_constant(x_test,prepend = False) 
+
+#predicted output
+y_pred = mod1.predict(x_test)
+
+#prediction
+y_pred[:5]
+
+#actual output
+y_text[:5]
+
+Example 2 [Multiple Linear Regression] -->
+
+df = pd.read_excel('CDAC_DataBook.xlsx',sheet_name = 'stackloss')
+df.head()
+
+x_train,x_test,y_train,y_test = train_test_split(df.drop('StackLoss',axis=1),df['StackLoss'],test_size=0.25)
+x_train.head()
+y_train.head()
+
+x_train = sm.add_constant(x_train,prepend=False)
+
+mod1 = sm.OLS(y_train,x_train).fit()
+
+print(mod1.summary())
+
+#actual output
+x_test = sm.add_constant(x_test,prepend = False)
+
+#predicted output
+y_pred = mod1.predict(x_test)
+
+#prediction
+y_pred[:5]
+
+#actual output
+y_test[:5]
+
+Example 3 [Multiple Linear Regression] -->
+
+df = pd.read_excel('CDAC_DataBook.xlsx',sheet_name = 'salaries')
+df.head()
+
+df = df[['rank','yrs_service','salary']]
+rank_dummy = pd.get_dummies(df['rank'],drop_first = True)
+rank_dummy.head()
+
+df = df.drop('rank',axis=1)
+df = pd.concat([df,rank_dummy],axis=1)
+df.head()
+
+x_train,x_test,y_train,y_test = train_test_split(df.drop('salary',axis=1),df['salary'],test_size=0.25)
+
+x_train = sm.add_constant(x_train,prepend=False)
+
+mod1 = sm.OLS(y_train,x_train).fit()
+print(mod1.summary())
+
+#actual output
+x_test = sm.add_constant(x_test,prepend = False)
+
+#predicted output
+y_pred = mod1.predict(x_test)
+
+#prediction
+y_pred[:5] 
+
+#actual output
+y_test[:5]

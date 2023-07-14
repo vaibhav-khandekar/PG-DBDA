@@ -1,0 +1,59 @@
+--- 1. baye's theorem --->
+
+import numpy as np
+import pandas as pd
+import sklearn
+from sklearn.naive_bayes import GaussianNB
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import confusion_matrix
+
+df = pd.read_excel('CDAC_DataBook.xlsx',sheet_name='iris')
+
+x_train,x_test,y_train,y_test = train_test_split(df.drop('Species',axis=1),df.Species,test_size=0.25)
+
+mod1 = GaussianNB().fit(x_train,y_train)
+
+y_pred = mod1.predict(x_test)
+
+print(confusion_matrix(y_test,y_pred))
+
+--- 2. KNN[k nearest neibors] -->
+
+from sklearn.neighbors import KNeighborsClassifier as knc
+
+mod2 = knc(n_neighbors=4).fit(x_train,y_train)
+
+y_pred2 = mod2.predict(x_test)
+
+print(confusion_matrix(y_test,y_pred2))
+
+--- KMeans clustering --->
+
+from sklearn.cluster import KMeans
+
+df = pd.read_excel('clusters.xlsx')
+
+mod3 = KMeans(n_clusters = 3).fit(df)
+
+mod3.cluster_centers_
+
+--- KMeans Clustering using matlotlib --->
+
+import matplotlib
+from matplotlib import pyplot as plt
+
+plt.scatter(df.Var1,df.Var2,c='m')
+plt.scatter(43.2,16.7,c='g')
+plt.scatter(55.1,46.1,c='b')
+plt.scatter(29.6,66.8,c='r')
+
+--- Hierarchical Cluster --->
+
+import scipy
+import scipy.cluster.hierarchy as sch
+
+df = pd.read_excel('CDAC_DataBook.xlsx',sheet_name='mtcars')
+df.head()
+
+sch.dendrogram(sch.linkage(df))
+
