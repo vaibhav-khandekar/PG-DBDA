@@ -1,0 +1,5 @@
+take student roll no , name 
+marks of 5 subjects
+store in arraylist
+roll number should be unique
+take a roll number as input and then calculate and display percentage for that student 
