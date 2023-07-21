@@ -1,1 +1,1 @@
-
+Case studies which I have solved during machine learning module
