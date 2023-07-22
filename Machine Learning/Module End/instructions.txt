@@ -1,0 +1,6 @@
+time - 12 hours
+evaluation - accuracy, classification report, confusion matrix
+atleast 3 models
+tables required including explaination of each step
+Observation should be required for 
+Documentation file required
