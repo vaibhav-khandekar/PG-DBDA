@@ -1,0 +1,1 @@
+Business Intelligence- requirements, content and managements, information Visualization, Data analytics Life Cycle, Analytic Processes and Tools, Analysis vs. Reporting, MS Excel: Functions, Formula, charts, Pivots and Lookups, Data Analysis Tool pack: Descriptive Summaries, Correlation, Regression, Introduction to Power BI, Modern Data Analytic Tools, Visualization Techniques. 
